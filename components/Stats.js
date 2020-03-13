@@ -1,9 +1,10 @@
 import useStats from '../utils/useStats';
 
-export default function Stats() {
-	const stats = useStats('https://covid19.mathdro.id/api');
-	if (!stats) return <p>Loading...</p>
-	console.log('stats:', stats)
+export default function Stats({ url }) {
+	const {stats, loading, error} = useStats(url);
+	console.log(stats, loading, error);
+	if (error) return <p>Error...</p>;
+	if (loading) return <p>Loading...</p>;
 	return (
 		<div>
 			<div className="statBlocK">
