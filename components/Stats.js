@@ -1,4 +1,22 @@
 import useStats from '../utils/useStats';
+import styled from 'styled-components';
+
+const StatGrid = styled.div`
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-gap: 1rem;
+`;
+
+const StatBlock = styled.div`
+	background-color: #F2F2F2;
+	font-size: 2rem;
+	text-align: center;
+	padding: 2rem;
+	border-radius: 2rem;
+	display: grid;
+	align-items: center;
+	justify-content: center;
+`;
 
 export default function Stats({ url }) {
 	const {stats, loading, error} = useStats(url);
@@ -6,19 +24,19 @@ export default function Stats({ url }) {
 	if (error) return <p>Error...</p>;
 	if (loading) return <p>Loading...</p>;
 	return (
-		<div>
-			<div className="statBlocK">
+		<StatGrid>
+			<StatBlock>
 				<h3>Confirmed:</h3>
 				<span>{stats.confirmed.value}</span>
-			</div>
-			<div className="statBlocK">
+			</StatBlock>
+			<StatBlock>
 				<h3>Deaths:</h3>
 				<span>{stats.deaths.value}</span>
-			</div>
-			<div className="statBlocK">
+			</StatBlock>
+			<StatBlock>
 				<h3>Recovered:</h3>
 				<span>{stats.recovered.value}</span>
-			</div>
-		</div>
+			</StatBlock>
+		</StatGrid>
 	)
 }
